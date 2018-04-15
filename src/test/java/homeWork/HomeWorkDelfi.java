@@ -18,6 +18,8 @@ public class HomeWorkDelfi {
     private static final By ARTICLE = By.className("top2012-big");
     private static final By TITLE = By.xpath(".//*[contains(@class, 'top2012-title')]");
     private static final By COMMENTS = By.xpath(".//*[contains(@class, 'comment-count')]");
+    private static final By REGCOMMENTS = By.xpath(".//*[contains(@class,'comment-thread-switcher-list-a comment-thread-switcher-list-a-reg'");
+    private static final By ANONCOMMENTS = By.xpath(".//*[contains(@class, 'comment-thread-switcher-list-a comment-thread-switcher-list-a-anon'");
     private static final By ARTICLETITLE = By.xpath(".//*[contains(@itemprop, 'headline name')]");
 
     private static final String MOB_MAIN_PAGE_WEB_URL = "http://m.delfi.lv/";
@@ -33,6 +35,7 @@ public class HomeWorkDelfi {
         driver.manage().window().maximize();
 
 // Delfi web page
+
         driver.get(MAIN_PAGE_WEB_URL);
 
         List<WebElement> articles = driver.findElements(ARTICLE);
@@ -62,7 +65,12 @@ public class HomeWorkDelfi {
         Assert.assertFalse("Links list is emty", links.isEmpty());
         Assert.assertFalse("Counts list is emty", counts.isEmpty());
 
+
         articles.get(0).click();
+        Assert.assertEquals("Web title and article title don't match", titles.get(0), driver.findElement(ARTICLETITLE).getText());
+
+
+
 
 
         //Delfi mobile page
