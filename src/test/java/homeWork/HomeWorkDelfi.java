@@ -26,6 +26,7 @@ public class HomeWorkDelfi {
     private static final By MOB_ARTICLE = By.className("md-mosaic-big ");
     private static final By MOB_TITLE = By.xpath(".//*[contains(@class, 'top2012-title')]");
     private static final By MOB_COMMENTS = By.xpath(".//*[contains(@class, 'commentCount')]");
+    private static final By MOB_ARTICLETITLE = By.xpath(".//*[contains(@class, 'article-title')]");
 
 
     @Test
@@ -103,6 +104,10 @@ public class HomeWorkDelfi {
         Assert.assertFalse("Mobile titles list is emty", mobTitles.isEmpty());
         Assert.assertFalse("Mobile links list is emty", mobLinks.isEmpty());
         Assert.assertFalse("Mobile counts list is emty", mobCounts.isEmpty());
+
+        mobArticles.get(0).click();
+        Assert.assertEquals("Mobile title and mobile article title don't match", mobTitles.get(0), driverMob.findElement(MOB_ARTICLETITLE).getText());
+
 
         Assert.assertEquals("Web title and mobile title don't match", titles, mobTitles);
         Assert.assertEquals("Web comments amount and mobile comments amount don't match", counts, mobCounts);
