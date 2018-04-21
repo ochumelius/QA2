@@ -71,6 +71,16 @@ public class HomeWorkDelfi {
         Assert.assertEquals("Web title and article title don't match", titles.get(0), driver.findElement(ARTICLETITLE).getText());
 
 
+        String regComments = driver.findElement(REGCOMMENTS).getText();
+        Integer regComm = getCounter(regComments);
+
+
+        String anonComments = driver.findElement(ANONCOMMENTS).getText();
+        Integer anonComm = getCounter(anonComments);
+
+        Integer summOfComments = (regComm + anonComm);
+
+        Assert.assertEquals("Web comments count and article comments count don't match", counts.get(0), summOfComments);
 
 
 
@@ -101,6 +111,7 @@ public class HomeWorkDelfi {
             mobLinks.add(mobLink);
             mobCounts.add(mobCounter);
         }
+
         Assert.assertFalse("Mobile titles list is emty", mobTitles.isEmpty());
         Assert.assertFalse("Mobile links list is emty", mobLinks.isEmpty());
         Assert.assertFalse("Mobile counts list is emty", mobCounts.isEmpty());
@@ -111,6 +122,8 @@ public class HomeWorkDelfi {
 
         Assert.assertEquals("Web title and mobile title don't match", titles, mobTitles);
         Assert.assertEquals("Web comments amount and mobile comments amount don't match", counts, mobCounts);
+
+        driver.quit();
 
 
     }
