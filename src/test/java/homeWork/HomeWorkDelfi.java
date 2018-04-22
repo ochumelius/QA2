@@ -26,6 +26,8 @@ public class HomeWorkDelfi {
     private static final By MOB_ARTICLE = By.className("md-mosaic-big ");
     private static final By MOB_TITLE = By.xpath(".//*[contains(@class, 'top2012-title')]");
     private static final By MOB_COMMENTS = By.xpath(".//*[contains(@class, 'commentCount')]");
+    private static final By MOB_REGCOMMENTS = By.xpath(".//*[contains(@class,'comment-thread-switcher-list-a comment-thread-switcher-list-a-reg'");
+    private static final By MOB_ANONCOMMENTS = By.xpath(".//*[contains(@class, 'comment-thread-switcher-list-a comment-thread-switcher-list-a-anon')]");
     private static final By MOB_ARTICLETITLE = By.xpath(".//*[contains(@class, 'article-title')]");
 
 
@@ -119,6 +121,15 @@ public class HomeWorkDelfi {
         mobArticles.get(0).click();
         Assert.assertEquals("Mobile title and mobile article title don't match", mobTitles.get(0), driverMob.findElement(MOB_ARTICLETITLE).getText());
 
+        String mobRegComments = driverMob.findElement(MOB_REGCOMMENTS).getText();
+        Integer mobRegComm = getMobCounter(mobRegComments);
+
+        String mobAnonComments = driverMob.findElement(MOB_ANONCOMMENTS).getText();
+        Integer mobAnonComm = getMobCounter(mobAnonComments);
+
+        Integer mobSumComments = (mobRegComm + mobAnonComm);
+
+        Assert.assertEquals("Mobile comments count and mobile article comments count don't match", mobCounts.get(0), mobSumComments);
 
         Assert.assertEquals("Web title and mobile title don't match", titles, mobTitles);
         Assert.assertEquals("Web comments amount and mobile comments amount don't match", counts, mobCounts);
