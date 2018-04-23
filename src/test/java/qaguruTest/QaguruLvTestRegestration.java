@@ -13,7 +13,6 @@ public class QaguruLvTestRegestration {
 
     private static final String MAIN_PAGE = "http://qaguru.lv/tickets/";
 
-
     @Test
     public void myqagurutest(){
         BaseFunc qaBaseFunc = new BaseFunc();

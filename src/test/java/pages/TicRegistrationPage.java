@@ -12,7 +12,6 @@ public class TicRegistrationPage {
     private static final By CHILDREN = By.id("children");
     private static final By BUGS = By.id("bugs");
     private static final By FLIGHT = By.id("flight");
-
     private static final By GETPRICE = By.xpath("//span[text()='Get Price']");
     private static final By BOOK = By.id("book2");
     private static final By SEAT = By.xpath(".//*[contains(@onclick, 'seat(1)')]");

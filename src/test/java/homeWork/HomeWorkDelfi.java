@@ -15,9 +15,9 @@ public class HomeWorkDelfi {
 // Article page
 
     private static final String MAIN_PAGE_WEB_URL = "http://www.delfi.lv/";
-    private static final By ARTICLE = By.className("top2012-big");
-    private static final By TITLE = By.xpath(".//*[contains(@class, 'top2012-title')]");
-    private static final By COMMENTS = By.xpath(".//*[contains(@class, 'comment-count')]");
+    private static final By ARTICLE = By.xpath(".//h3[contains(@class, 'top2012-title')]");
+    private static final By TITLE = By.xpath(".//a[contains(@class, 'top2012-title')]");
+    private static final By COMMENTS = By.xpath(".//a[contains(@class, 'comment-count')]");
     private static final By REGCOMMENTS = By.xpath(".//*[contains(@class,'comment-thread-switcher-list-a comment-thread-switcher-list-a-reg'");
     private static final By ANONCOMMENTS = By.xpath(".//*[contains(@class, 'comment-thread-switcher-list-a comment-thread-switcher-list-a-anon'");
     private static final By ARTICLETITLE = By.xpath(".//*[contains(@itemprop, 'headline name')]");
@@ -72,15 +72,13 @@ public class HomeWorkDelfi {
         articles.get(0).click();
         Assert.assertEquals("Web title and article title don't match", titles.get(0), driver.findElement(ARTICLETITLE).getText());
 
-
         String regComments = driver.findElement(REGCOMMENTS).getText();
         Integer regComm = getCounter(regComments);
-
 
         String anonComments = driver.findElement(ANONCOMMENTS).getText();
         Integer anonComm = getCounter(anonComments);
 
-        Integer summOfComments = (regComm + anonComm);
+        Integer summOfComments = regComm + anonComm;
 
         Assert.assertEquals("Web comments count and article comments count don't match", counts.get(0), summOfComments);
 
@@ -127,7 +125,7 @@ public class HomeWorkDelfi {
         String mobAnonComments = driverMob.findElement(MOB_ANONCOMMENTS).getText();
         Integer mobAnonComm = getMobCounter(mobAnonComments);
 
-        Integer mobSumComments = (mobRegComm + mobAnonComm);
+        Integer mobSumComments = mobRegComm + mobAnonComm;
 
         Assert.assertEquals("Mobile comments count and mobile article comments count don't match", mobCounts.get(0), mobSumComments);
 
@@ -154,7 +152,6 @@ public class HomeWorkDelfi {
 
         return Integer.parseInt(text);
     }
-
 
 
 
