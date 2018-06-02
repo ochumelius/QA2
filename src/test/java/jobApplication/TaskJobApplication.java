@@ -1,11 +1,15 @@
 package jobApplication;
 
+import netscape.javascript.JSObject;
+import org.json.simple.JSONArray;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.lang.annotation.Target;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TaskJobApplication {
@@ -53,6 +57,8 @@ public class TaskJobApplication {
 
         driver.findElement(Economy).click();
         driver.findElement(ICONSORTER).click();
+
+        List <WebElement> FlightList = driver.findElements(DEPART);
 
 
 
