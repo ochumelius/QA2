@@ -77,17 +77,17 @@ public class TaskJobApplication {
         for (int i = 0; i<results.size(); i++){
             WebElement we = results.get(i);
 
-            String Departs = we.findElement(DEPART).getText();
-            String Arrives = we.findElement(ARRIVE).getText();
-            String Stops = we.findElement(STOPS).getText();
-            String Durations = we.findElement(DURATION).getText();
-            String Prices = we.findElement(PRICES).getText();
+            String departs = we.findElement(DEPART).getText();
+            String arrives = we.findElement(ARRIVE).getText();
+            String stops = we.findElement(STOPS).getText();
+            String durations = we.findElement(DURATION).getText();
+            String prices = we.findElement(PRICES).getText();
 
-            flights.put("Depart", Departs);
-            flights.put("Arrive", Arrives);
-            flights.put("Stops", Stops);
-            flights.put("Durations", Durations);
-            flights.put("Prices", Prices);
+            flights.put("Depart", departs);
+            flights.put("Arrive", arrives);
+            flights.put("Stops", stops);
+            flights.put("Durations", durations);
+            flights.put("Prices", prices);
 
             System.out.println(flights.toJSONString());
             flights.clear();
