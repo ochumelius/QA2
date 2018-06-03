@@ -24,7 +24,7 @@ public class TaskJobApplication {
     private static final By TO = By.id("Destination");
     private static final By DATE = By.id("DepartDate");
     private static final By BOOKINGSUMBIT = By.id("flightBookingSubmit");
-    private static final By ECONOMY = By.xpath(".//*[contains(@id, 'mm_display_be')]");
+    private static final By ECONOMY = By.xpath(".//*[contains(@class, 'col-description-bg')]");
     private static final By ICONSORTER = By.xpath(".//*[contains(@class, 'icon-sorter')]");
     private static final By DEPART = By.xpath(".//*[contains(@class, 'flight-time flight-time-depart')]");
     private static final By ARRIVE = By.xpath(".//*[contains(@class, 'flight-time flight-time-arrive')]");
@@ -52,19 +52,28 @@ public class TaskJobApplication {
             System.out.println("No pop-up window found");
         }
 
-
+        // Choose one way flight
         driver.findElement(ONE_WAY).click();
+        // Choose from where flight
         driver.findElement(FROM).sendKeys("New York, NY, US (JFK - Kennedy)");
+        //Choose destination
         driver.findElement(TO).sendKeys("Miami, FL, US (MIA - All\n" +
                 "Airports)");
+        //Choose date
         driver.findElement(DATE).sendKeys("20.08");
+        //Click button 'sumbit', to see result
         driver.findElement(BOOKINGSUMBIT).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
+        //Sort from low to high price
         driver.findElement(ECONOMY).click();
         driver.findElement(ICONSORTER).click();
+        //Click button 'show all', to see all result
         driver.findElement(SHOWALL).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        if (SHOWALL.equals(null)){
+            System.out.println("Button show all not found");
+        }
 
         // Find all information of the flights and add them to a list
         List<WebElement> results = driver.findElements(RESULTS);
@@ -93,15 +102,6 @@ public class TaskJobApplication {
             flights.clear();
 
         }
-
-   //    //Write JSON to file
-   //    try (FileWriter file = new FileWriter("c:\\test.json")){
-
-   //        file.write(Flights.toJSONString());
-   //        file.flush();
-    //    } catch (IOException e){
-    //        e.printStackTrace();
-    //    }
 
 
     }
