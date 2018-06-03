@@ -64,6 +64,7 @@ public class TaskJobApplication {
         driver.findElement(ECONOMY).click();
         driver.findElement(ICONSORTER).click();
         driver.findElement(SHOWALL).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Find all information of the flights and add them to a list
         List<WebElement> Results = driver.findElements(RESULTS);
