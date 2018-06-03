@@ -2,6 +2,7 @@ package jobApplication;
 
 
 import org.json.simple.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,10 +43,10 @@ public class TaskJobApplication {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-
+        // Open main page of the Web version
         driver.get(MAIN_PAGE);
 
-
+        // Close pop-up window
         driver.findElement(SIMPLEMODAL_CLOSE_BTN).click();
         if (SIMPLEMODAL_CLOSE_BTN.equals(null)) {
             System.out.println("No pop-up window found");
@@ -64,15 +65,15 @@ public class TaskJobApplication {
         driver.findElement(ICONSORTER).click();
         driver.findElement(SHOWALL).click();
 
+        // Find all information of the flights and add them to a list
         List<WebElement> Results = driver.findElements(RESULTS);
 
-       // List<WebElement> Arrive = driver.findElements(ARRIVE);
-        //List<WebElement> Stops = driver.findElements(STOPS);
-        //List<WebElement> Duration = driver.findElements(DURATION);
-        //List<WebElement> Prices = driver.findElements(PRICES);
+        // Check if list is not emty
+        Assert.assertFalse("Result list is emty", Results.isEmpty());
 
         JSONObject Flights = new JSONObject();
 
+        // Go througt a list and getText() from WebElements
         for (int i = 0; i<Results.size(); i++){
             WebElement we = Results.get(i);
 
@@ -93,7 +94,8 @@ public class TaskJobApplication {
 
         }
 
-       try ( FileWriter file = new FileWriter("c:\\test.json")){
+       //Write JSON to file
+       try (FileWriter file = new FileWriter("c:\\test.json")){
 
            file.write(Flights.toJSONString());
            file.flush();
