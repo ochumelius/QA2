@@ -67,16 +67,15 @@ public class TaskJobApplication {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Find all information of the flights and add them to a list
-        List<WebElement> Results = driver.findElements(RESULTS);
-
+        List<WebElement> results = driver.findElements(RESULTS);
         // Check if list is not emty
-        Assert.assertFalse("Result list is emty", Results.isEmpty());
+        Assert.assertFalse("Result list is emty", results.isEmpty());
 
-        JSONObject Flights = new JSONObject();
+        JSONObject flights = new JSONObject();
 
         // Go througt a list and getText() from WebElements
-        for (int i = 0; i<Results.size(); i++){
-            WebElement we = Results.get(i);
+        for (int i = 0; i<results.size(); i++){
+            WebElement we = results.get(i);
 
             String Departs = we.findElement(DEPART).getText();
             String Arrives = we.findElement(ARRIVE).getText();
@@ -84,14 +83,14 @@ public class TaskJobApplication {
             String Durations = we.findElement(DURATION).getText();
             String Prices = we.findElement(PRICES).getText();
 
-            Flights.put("Depart", Departs);
-            Flights.put("Arrive", Arrives);
-            Flights.put("Stops", Stops);
-            Flights.put("Durations", Durations);
-            Flights.put("Prices", Prices);
+            flights.put("Depart", Departs);
+            flights.put("Arrive", Arrives);
+            flights.put("Stops", Stops);
+            flights.put("Durations", Durations);
+            flights.put("Prices", Prices);
 
-            System.out.println(Flights.toJSONString());
-            Flights.clear();
+            System.out.println(flights.toJSONString());
+            flights.clear();
 
         }
 
