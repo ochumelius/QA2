@@ -41,7 +41,7 @@ public class TaskJobApplication {
         System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Open main page of the Web version
         driver.get(MAIN_PAGE);
@@ -59,7 +59,7 @@ public class TaskJobApplication {
                 "Airports)");
         driver.findElement(DATE).sendKeys("20.08");
         driver.findElement(BOOKINGSUMBIT).click();
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.findElement(ECONOMY).click();
         driver.findElement(ICONSORTER).click();
