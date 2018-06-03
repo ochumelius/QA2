@@ -94,14 +94,14 @@ public class TaskJobApplication {
 
         }
 
-       //Write JSON to file
-       try (FileWriter file = new FileWriter("c:\\test.json")){
+   //    //Write JSON to file
+   //    try (FileWriter file = new FileWriter("c:\\test.json")){
 
-           file.write(Flights.toJSONString());
-           file.flush();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+   //        file.write(Flights.toJSONString());
+   //        file.flush();
+    //    } catch (IOException e){
+    //        e.printStackTrace();
+    //    }
 
 
     }
